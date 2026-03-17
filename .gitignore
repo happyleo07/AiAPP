@@ -1,0 +1,5 @@
+# 微信小程序
+node_modules/
+project.private.config.json
+.DS_Store
+*.log
