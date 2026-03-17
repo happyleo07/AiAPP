@@ -1,0 +1,7 @@
+<view class="container">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}" show-location="true" style="width:100%;height:60vh"></map>
+  <view class="actions">
+    <button type="primary" bindtap="openMap" disabled="{{!hasLocation}}">开始导航</button>
+    <view class="tip" wx:if="{{!hasLocation}}">未获取到定位，请在设置中授权位置权限</view>
+  </view>
+</view>

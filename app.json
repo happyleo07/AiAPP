@@ -1,0 +1,29 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/discover/discover",
+        "pages/profile/profile"
+    ],
+    "window": {
+        "navigationBarTitleText": "小程序",
+        "navigationBarTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff",
+        "backgroundColor": "#ffffff"
+    },
+    "tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#07c160",
+        "backgroundColor": "#ffffff",
+        "list": [
+            { "pagePath": "pages/home/home", "text": "首页", "iconPath": "images/home.png", "selectedIconPath": "images/home_selected.png" },
+            { "pagePath": "pages/discover/discover", "text": "发现", "iconPath": "images/discover.png", "selectedIconPath": "images/discover_selected.png" },
+            { "pagePath": "pages/profile/profile", "text": "我的", "iconPath": "images/profile.png", "selectedIconPath": "images/profile_selected.png" }
+        ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "用于在地图中显示当前位置"
+        }
+    },
+    "style": "v2"
+}

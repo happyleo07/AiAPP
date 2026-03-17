@@ -1,0 +1,11 @@
+<view class="container center" wx:if="{{!userInfo}}" style="height: 100vh;">
+  <button type="primary" bindtap="getUserProfile">获取用户信息</button>
+</view>
+<view class="container" wx:elif="{{userInfo}}">
+  <view class="profile">
+    <image class="avatar" mode="aspectFill" src="{{userInfo.avatarUrl}}"></image>
+    <view class="name">{{userInfo.nickName}}</view>
+    <view class="row">性别：{{genderText}}</view>
+    <view class="row">国家/地区：{{userInfo.country}} {{userInfo.province}} {{userInfo.city}}</view>
+  </view>
+</view>
