@@ -1,21 +1,43 @@
 Page({
   data: {
     userInfo: null,
-    genderText: ''
+    defaultAvatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
   },
-  getUserProfile() {
-    wx.getUserProfile({
-      desc: '用于完善个人资料',
+  onLoad() {
+    // 从缓存获取用户信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (userInfo) {
+      this.setData({ userInfo })
+    }
+  },
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail
+    const userInfo = this.data.userInfo || {}
+    userInfo.avatarUrl = avatarUrl
+    this.setData({ userInfo })
+    this.saveUserInfo()
+  },
+  onInputNickname(e) {
+    const nickName = e.detail.value
+    const userInfo = this.data.userInfo || {}
+    userInfo.nickName = nickName
+    this.setData({ userInfo })
+    this.saveUserInfo()
+  },
+  saveUserInfo() {
+    if (this.data.userInfo) {
+      wx.setStorageSync('userInfo', this.data.userInfo)
+    }
+  },
+  logout() {
+    wx.showModal({
+      title: '提示',
+      content: '确定要退出登录吗？',
       success: (res) => {
-        const info = res.userInfo || null
-        let genderText = ''
-        if (info) {
-          genderText = info.gender === 1 ? '男' : (info.gender === 2 ? '女' : '未知')
+        if (res.confirm) {
+          wx.removeStorageSync('userInfo')
+          this.setData({ userInfo: null })
         }
-        this.setData({
-          userInfo: info,
-          genderText
-        })
       }
     })
   }

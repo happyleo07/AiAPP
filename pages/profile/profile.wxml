@@ -1,11 +1,66 @@
-<view class="container center" wx:if="{{!userInfo}}" style="height: 100vh;">
-  <button type="primary" bindtap="getUserProfile">获取用户信息</button>
-</view>
-<view class="container" wx:elif="{{userInfo}}">
-  <view class="profile">
-    <image class="avatar" mode="aspectFill" src="{{userInfo.avatarUrl}}"></image>
-    <view class="name">{{userInfo.nickName}}</view>
-    <view class="row">性别：{{genderText}}</view>
-    <view class="row">国家/地区：{{userInfo.country}} {{userInfo.province}} {{userInfo.city}}</view>
+<view class="profile-container">
+  <!-- 头部用户信息区域 -->
+  <view class="user-info-section">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image class="user-avatar" src="{{userInfo.avatarUrl || defaultAvatar}}"></image>
+    </button>
+    <view class="user-details">
+      <input type="nickname" class="nickname-input" placeholder="点击输入昵称" value="{{userInfo.nickName}}" bindblur="onInputNickname" />
+      <text class="user-id">微信号：AiApp_{{userInfo.nickName || 'User'}}</text>
+    </view>
+    <view class="qr-code">
+      <text class="iconfont icon-qrcode">></text>
+    </view>
+  </view>
+
+  <!-- 功能列表区域 -->
+  <view class="menu-list">
+    <view class="menu-item">
+      <view class="menu-item-left">
+        <text class="iconfont icon-service">服务</text>
+      </view>
+      <view class="menu-item-right">></view>
+    </view>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-item">
+      <view class="menu-item-left">
+        <text class="iconfont icon-collection">收藏</text>
+      </view>
+      <view class="menu-item-right">></view>
+    </view>
+    <view class="menu-item">
+      <view class="menu-item-left">
+        <text class="iconfont icon-album">朋友圈</text>
+      </view>
+      <view class="menu-item-right">></view>
+    </view>
+    <view class="menu-item">
+      <view class="menu-item-left">
+        <text class="iconfont icon-card">卡包</text>
+      </view>
+      <view class="menu-item-right">></view>
+    </view>
+    <view class="menu-item">
+      <view class="menu-item-left">
+        <text class="iconfont icon-emoji">表情</text>
+      </view>
+      <view class="menu-item-right">></view>
+    </view>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-item">
+      <view class="menu-item-left">
+        <text class="iconfont icon-setting">设置</text>
+      </view>
+      <view class="menu-item-right">></view>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-section" wx:if="{{userInfo}}">
+    <button class="logout-btn" bindtap="logout">退出登录</button>
   </view>
 </view>

@@ -9,3 +9,77 @@ button {
   color: #888888;
   font-size: 26rpx;
 }
+
+/* 弹窗样式 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 80%;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: #999;
+  padding: 10rpx;
+}
+
+.modal-body {
+  margin-bottom: 40rpx;
+}
+
+.input-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.modal-input {
+  border-bottom: 1rpx solid #eee;
+  padding: 10rpx 0;
+  font-size: 30rpx;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-footer button {
+  flex: 1;
+  margin: 0 10rpx;
+  font-size: 28rpx;
+}
+
+.btn-delete {
+  background: #fde2e2;
+  color: #f56c6c;
+  border: none;
+}
+

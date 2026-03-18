@@ -1,7 +1,26 @@
 <view class="container">
-  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}" show-location="true" style="width:100%;height:60vh"></map>
-  <view class="actions">
-    <button type="primary" bindtap="openMap" disabled="{{!hasLocation}}">开始导航</button>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}" show-location="true" bindtap="addMarker" bindmarkertap="onMarkerTap" style="width:100%;height:60vh"></map>
+  <view class="actions" wx:if="{{!isSpecialUser}}">
+    
     <view class="tip" wx:if="{{!hasLocation}}">未获取到定位，请在设置中授权位置权限</view>
+  </view>
+
+  <!-- 自定义编辑弹窗 -->
+  <view class="modal-mask" wx:if="{{showEditModal}}" bindtap="closeEditModal">
+    <view class="modal-content" catchtap="stopBubble">
+      <view class="modal-header">
+        <text class="modal-title">编辑标记</text>
+        <view class="modal-close" bindtap="closeEditModal">×</view>
+      </view>
+      <view class="modal-body">
+        <view class="input-label">名称</view>
+        <input class="modal-input" value="{{editingMarkerName}}" bindinput="onInputMarkerName" placeholder="请输入标记名称" />
+      </view>
+      <view class="modal-footer">
+        <button class="btn-delete" bindtap="deleteMarker">删除</button>
+        <button class="btn-nav" type="warn" bindtap="navToMarker">导航</button>
+        <button class="btn-update" type="primary" bindtap="updateMarkerName">更新</button>
+      </view>
+    </view>
   </view>
 </view>
