@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="header">
+    <text class="date">{{currentDate}}</text>
+  </view>
+
+  <view class="photo-section" bindtap="chooseImage">
+    <image wx:if="{{photoPath}}" class="preview-img" src="{{photoPath}}" mode="aspectFill"></image>
+    <view wx:else class="camera-placeholder">
+      <view class="camera-icon">📷</view>
+    </view>
+  </view>
+
+  <view class="visibility-section">
+    <text class="label">谁可以看</text>
+    <radio-group class="radio-group" bindchange="onVisibilityChange">
+      <label class="radio-item">
+        <radio value="we" checked="true" color="#FFD700" /> 我们
+      </label>
+      <label class="radio-item">
+        <radio value="all" color="#FFD700" /> 所有人
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="content-section">
+    <textarea class="note-textarea" placeholder="写点什么..." bindinput="onContentInput" maxlength="500"></textarea>
+  </view>
+
+  <view class="footer">
+    <button class="done-btn" bindtap="saveNote">写完啦</button>
+  </view>
+</view>

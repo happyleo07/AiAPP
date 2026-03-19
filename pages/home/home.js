@@ -62,7 +62,17 @@ Page({
             }));
 
             const currentLocation = this.data.markers.find(m => m.id === 'current_location');
-            const newMarkers = currentLocation ? [currentLocation, ...dbMarkers] : dbMarkers;
+
+            // 使用 Map 通过 id 过滤重复项，确保 db 中的项覆盖旧项
+            const markerMap = new Map();
+            if (currentLocation) {
+                markerMap.set(currentLocation.id, currentLocation);
+            }
+            dbMarkers.forEach(m => {
+                markerMap.set(m.id, m);
+            });
+
+            const newMarkers = Array.from(markerMap.values());
 
             this.setData({ markers: newMarkers });
             wx.hideLoading();
@@ -190,6 +200,27 @@ Page({
                 showEditModal: true,
                 editingMarkerId: markerId,
                 editingMarkerName: marker.title
+            });
+        }
+    },
+    onListEditClick(e) {
+        const { id, title } = e.currentTarget.dataset;
+        this.setData({
+            showEditModal: true,
+            editingMarkerId: id,
+            editingMarkerName: title
+        });
+    },
+    jumpToMarker(e) {
+        const marker = e.currentTarget.dataset.marker;
+        if (marker) {
+            this.setData({
+                latitude: marker.latitude,
+                longitude: marker.longitude
+            });
+            wx.showToast({
+                title: `已跳转至: ${marker.title}`,
+                icon: 'none'
             });
         }
     },

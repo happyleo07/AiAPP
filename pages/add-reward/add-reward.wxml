@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="section">
+    <view class="label">奖励给</view>
+    <view class="user-selector">
+      <view wx:for="{{users}}" wx:key="index" class="user-item {{selectedUser === index ? 'active' : ''}}" bindtap="selectUser" data-index="{{index}}">
+        <image class="avatar" src="{{item.avatar}}"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="label">选择一个习惯</view>
+    <view class="habit-list">
+      <view wx:for="{{habits}}" wx:key="index" class="habit-item {{selectedHabit === index ? 'active' : ''}}" bindtap="selectHabit" data-index="{{index}}">
+        <text class="habit-icon">{{item.icon}}</text>
+        <text class="habit-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section white-card">
+    <view class="input-group">
+      <view class="label">要奖励什么呢</view>
+      <input class="name-input" placeholder="提示：一个熊抱" bindinput="onRewardInput" value="{{rewardName}}" />
+    </view>
+
+    <view class="input-group">
+      <view class="label">写一些激励的话吧</view>
+      <input class="name-input" placeholder="奖励你一个抱抱呀。" bindinput="onMottoInput" value="{{motivationalText}}" />
+    </view>
+
+    <view class="input-group">
+      <view class="label">设置打卡次数</view>
+      <view class="count-selector">
+        <text class="count-num">{{targetCount}}</text>
+        <text class="count-unit">次</text>
+        <slider class="count-slider" min="1" max="100" value="{{targetCount}}" activeColor="#FFD700" bindchange="onCountChange" />
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <button class="save-btn" bindtap="saveReward">写完啦</button>
+  </view>
+</view>

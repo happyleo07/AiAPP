@@ -1,3 +1,56 @@
-<view class="container center" style="height: 100vh;">
-  <view class="title">发现</view>
+<view class="discover-container">
+  <!-- 顶部空余或展示语 -->
+  <view class="header">
+    <text class="slogan">你是我的习惯</text>
+  </view>
+
+  <!-- 中间核心功能图标 -->
+  <view class="feature-grid">
+    <view class="feature-item" bindtap="navToAddHabit">
+      <view class="icon-box habit">
+        <text class="iconfont">💛</text>
+      </view>
+      <text class="feature-name">习惯</text>
+    </view>
+    <view class="feature-item" bindtap="navToAddNote">
+      <view class="icon-box note">
+        <text class="iconfont">✍️</text>
+      </view>
+      <text class="feature-name">随笔</text>
+    </view>
+    <view class="feature-item" bindtap="navToAddReward">
+      <view class="icon-box reward">
+        <text class="iconfont">🎁</text>
+      </view>
+      <text class="feature-name">奖励</text>
+    </view>
+  </view>
+
+  <!-- 底部辅助功能栏 (调整为均匀分布) -->
+  <view class="sub-nav">
+    <view class="sub-nav-item {{activeTab === 'square' ? 'active' : ''}}" bindtap="switchTab" data-tab="square">广场</view>
+    <view class="add-center">
+      <view class="circle-btn" bindtap="navToAddHabit">+</view>
+    </view>
+    <view class="sub-nav-item {{activeTab === 'reward' ? 'active' : ''}}" bindtap="switchTab" data-tab="reward">奖励</view>
+  </view>
+
+  <!-- 广场内容展示区 -->
+  <view class="square-content" wx:if="{{activeTab === 'square'}}">
+    <scroll-view class="square-scroll" scroll-y="true" bindscrolltolower="loadMoreNotes">
+      <view class="note-card" wx:for="{{notes}}" wx:key="_id">
+        <view class="note-header">
+          <text class="note-date">{{item.date}}</text>
+        </view>
+        <image class="note-image" wx:if="{{item.fileId}}" src="{{item.fileId}}" mode="aspectFill" bindlongpress="downloadImage" data-url="{{item.fileId}}"></image>
+        <view class="note-body">
+          <text class="note-text">{{item.content}}</text>
+        </view>
+        <view class="note-footer">
+          <text class="download-tip" wx:if="{{item.fileId}}">长按图片下载保存</text>
+        </view>
+      </view>
+      <view class="no-more" wx:if="{{notes.length === 0}}">广场上空空如也...</view>
+    </scroll-view>
+  </view>
 </view>

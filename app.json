@@ -2,7 +2,10 @@
     "pages": [
         "pages/home/home",
         "pages/discover/discover",
-        "pages/profile/profile"
+        "pages/profile/profile",
+        "pages/add-habit/add-habit",
+        "pages/add-note/add-note",
+        "pages/add-reward/add-reward"
     ],
     "window": {
         "navigationBarTitleText": "小程序",

@@ -1,3 +1,151 @@
-.container {
+.discover-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fff;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slogan {
+  color: #eee;
+  font-size: 32rpx;
+}
+
+.feature-grid {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 100rpx;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-box {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+  margin-bottom: 20rpx;
+}
+
+.feature-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.sub-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* 均匀分布 */
+  padding: 40rpx 0;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.sub-nav-item {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.sub-nav-item.active {
+  color: #FFD700;
+}
+
+.square-content {
+  flex: 1;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.square-scroll {
   height: 100%;
 }
+
+.note-card {
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  overflow: hidden;
+  padding-bottom: 20rpx;
+}
+
+.note-header {
+  padding: 20rpx;
+}
+
+.note-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.note-image {
+  width: 100%;
+  height: 400rpx;
+  background-color: #f5f5f5;
+}
+
+.note-body {
+  padding: 20rpx;
+}
+
+.note-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.note-footer {
+  padding: 0 20rpx;
+}
+
+.download-tip {
+  font-size: 22rpx;
+  color: #ccc;
+}
+
+.no-more {
+  text-align: center;
+  color: #ccc;
+  font-size: 24rpx;
+  padding: 40rpx 0;
+}
+
+
+.add-center {
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.circle-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  border: 4rpx solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

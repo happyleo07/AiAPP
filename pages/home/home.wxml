@@ -5,6 +5,22 @@
     <view class="tip" wx:if="{{!hasLocation}}">未获取到定位，请在设置中授权位置权限</view>
   </view>
 
+  <!-- 标记点列表 -->
+  <view class="marker-list-container">
+    <view class="list-title">已标记地点 ({{markers.length - (hasLocation ? 1 : 0)}})</view>
+    <scroll-view class="marker-scroll-view" scroll-y="true">
+      <view class="marker-item" wx:for="{{markers}}" wx:key="id" wx:if="{{item.id !== 'current_location'}}" bindtap="jumpToMarker" data-marker="{{item}}">
+        <image class="marker-icon" src="{{item.iconPath}}"></image>
+        <view class="marker-info">
+          <text class="marker-name">{{item.title}}</text>
+          <text class="marker-coords">{{item.latitude.toFixed(4)}}{{item.longitude.toFixed(4)}}</text>
+        </view>
+        <view class="marker-edit-btn" catchtap="onListEditClick" data-id="{{item.id}}" data-title="{{item.title}}">修改</view>
+      </view>
+      <view class="no-marker" wx:if="{{markers.length <= (hasLocation ? 1 : 0)}}">暂无标记地点</view>
+    </scroll-view>
+  </view>
+
   <!-- 自定义编辑弹窗 -->
   <view class="modal-mask" wx:if="{{showEditModal}}" bindtap="closeEditModal">
     <view class="modal-content" catchtap="stopBubble">

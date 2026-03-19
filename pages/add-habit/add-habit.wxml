@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="section">
+    <view class="section-title">选一个图标</view>
+    <swiper class="icon-swiper" indicator-dots="true" indicator-active-color="#FFD700">
+      <swiper-item>
+        <view class="icon-grid">
+          <view wx:for="{{icons1}}" wx:key="index" class="icon-item {{selectedIcon === item ? 'active' : ''}}" bindtap="selectIcon" data-icon="{{item}}">
+            <text class="icon-emoji">{{item}}</text>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="icon-grid">
+          <view wx:for="{{icons2}}" wx:key="index" class="icon-item {{selectedIcon === item ? 'active' : ''}}" bindtap="selectIcon" data-icon="{{item}}">
+            <text class="icon-emoji">{{item}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="section white-card">
+    <view class="input-group">
+      <view class="label">给习惯起一个名字吧</view>
+      <input class="name-input" placeholder="跑步、给宝宝打水" bindinput="onNameInput" value="{{habitName}}" />
+    </view>
+
+    <view class="input-group">
+      <view class="label">什么时候行动呢</view>
+      <view class="weekday-selector">
+        <view wx:for="{{weekdays}}" wx:key="index" class="day-item {{item.selected ? 'active' : ''}}" bindtap="toggleDay" data-index="{{index}}">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+
+    <view class="input-group">
+      <view class="label">截止时间</view>
+      <input class="name-input" placeholder="一直坚持下去！" bindinput="onDeadlineInput" value="{{deadline}}" />
+    </view>
+  </view>
+
+  <view class="footer">
+    <button class="save-btn" bindtap="saveHabit">写完啦</button>
+  </view>
+</view>
