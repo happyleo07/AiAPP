@@ -40,17 +40,27 @@
     <scroll-view class="square-scroll" scroll-y="true" bindscrolltolower="loadMoreNotes">
       <view class="note-card" wx:for="{{notes}}" wx:key="_id">
         <view class="note-header">
-          <text class="note-date">{{item.date}}</text>
+          <view class="note-date-box">
+            <text class="calendar-icon">📅</text>
+            <text class="note-date">{{item.date}}</text>
+          </view>
+          <view class="note-actions" wx:if="{{item._openid === openid}}">
+            <text class="action-btn edit" bindtap="editNote" data-id="{{item._id}}" data-content="{{item.content}}">编辑</text>
+            <text class="action-btn delete" bindtap="deleteNote" data-id="{{item._id}}" data-fileid="{{item.fileId}}">删除</text>
+          </view>
         </view>
-        <image class="note-image" wx:if="{{item.fileId}}" src="{{item.fileId}}" mode="aspectFill" bindlongpress="downloadImage" data-url="{{item.fileId}}"></image>
+        <image class="note-image" wx:if="{{item.fileId}}" src="{{item.fileId}}" mode="aspectFill" bindtap="previewImage" bindlongpress="downloadImage" data-url="{{item.fileId}}"></image>
         <view class="note-body">
           <text class="note-text">{{item.content}}</text>
         </view>
-        <view class="note-footer">
-          <text class="download-tip" wx:if="{{item.fileId}}">长按图片下载保存</text>
-        </view>
       </view>
-      <view class="no-more" wx:if="{{notes.length === 0}}">广场上空空如也...</view>
+
+      <!-- 加载状态 -->
+      <view class="load-status">
+        <text wx:if="{{loading}}">正在加载中...</text>
+        <text wx:elif="{{!hasMore && notes.length > 0}}">已经到底啦 ~</text>
+        <text wx:elif="{{notes.length === 0 && !loading}}">广场上空空如也...</text>
+      </view>
     </scroll-view>
   </view>
 </view>
